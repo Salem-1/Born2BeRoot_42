@@ -16,6 +16,9 @@ in this project I will setup a server in virutal box with tight specification,
 -Configure your firewall using UFW (this will leave only 4242 open)
 	to install it you will need DNF
 
+
+
+
 Terminology(Mind map):
 --------------------
 -turn in signature.txt at the root repo., paste in it the signature fo your VMachine
@@ -92,7 +95,7 @@ root userpass:
 		9-IPv4 address of my server and MAC address
 		10-Number of commands executed with sudo program
 
-
+Note: check the testing commands at the end of the project file.
 
 
 
