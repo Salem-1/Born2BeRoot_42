@@ -51,7 +51,7 @@ SSH will be tested during defence by setting up new account?
 ----------------------------------------------------------------------------------
 Specifications:
 1-AppArmor must be running at startup
-2-Create at least 2 encrypted partitions
+(check) 2-Create at least 2 encrypted partitions
 3-SSH run on port 4242 only 
 4-Must not be able to connect SSH as root
 5-Setting up new account during defense
@@ -96,6 +96,83 @@ root userpass:
 		10-Number of commands executed with sudo program
 
 Note: check the testing commands at the end of the project file.
+----------------------------------------------------------------
+The commandline_bank.enum():
+$ apt-get update -y
+$ apt-get upgrade -y
+$ apt install sudo
+$ su -
+$ usermod -aG sudo your_username
+ getent group sudo
+sudo visudo
+your_username    ALL=(ALL) ALL
+$ apt-get install git -y
+	sudo apt-get install wget
+	 sudo apt-get install vim
+	 $ sudo apt-get install zsh
+$ zsh --version
+$ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+	$ sudo apt-get update
+$ sudo apt install openssh-server
+	sudo systemctl status ssh
+	 service ssh restart
+	 sudo nano /etc/ssh/sshd_config
+	 #Port 22
+	 Port 4242
+	 sudo grep Port /etc/ssh/sshd_config
+	 sudo service ssh restart
+	 apt-get install ufw
+	 sudo ufw enable
+	 sudo ufw status numbered
+	 sudo ufw allow ssh
+	 sudo ufw allow 4242
+	 sudo ufw status numbered
+$ sudo ufw delete (that number, for example 5 or 6)
+	modify the port from the vm
+	sudo systemctl restart ssh
+	$ sudo service sshd status
+	----from the host machine
+	ssh your_username@127.0.0.1 -p 4242
+	exit =-------> to quit the connection
+	------------------
+	Password policy:
+	--------------
+	$ sudo apt-get install libpam-pwquality
+	 sudo nano /etc/pam.d/common-password
+	 password [success=2 default=ignore] pam_unix.so obscure sha512
+	 password [success=2 default=ignore] pam_unix.so obscure sha512 minlen=10
+	 password    requisite         pam_pwquality.so retry=3
+	 password    requisite         pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=0 difok=7 enforce_for_root
+	 $ sudo nano /etc/login.defs
+	 PASS_MAX_DAYS 9999
+PASS_MIN_DAYS 0
+PASS_WARN_AGE 7
 
+PASS_MAX_DAYS 30
+PASS_MIN_DAYS 2
+PASS_WARN_AGE 7
 
+$ sudo reboot
 
+$ sudo groupadd user42
+$ sudo groupadd evaluating
+groups
+
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+Defaults     secure_path="..."
+Defaults     passwd_tries=3
+Defaults     badpass_message="Password is wrong, please try again!"
+Defaults	logfile="/var/log/sudo/sudo.log"
+Defaults	log_input,log_output
+Defaults        requiretty
+Defaults   secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+127.0.0.1       localhost
+127.0.0.1       new_hostname
+ sudo reboot
+ $ sudo crontab -u root -e
+ */10 * * * * /usr/local/bin/monitoring.sh
+  drm:vmw_host_log *ERROR* Failed to send host log message.
