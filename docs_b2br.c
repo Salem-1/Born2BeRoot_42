@@ -28,11 +28,14 @@ Terminology(Mind map):
 -SELinux
 -AppArmor
 -How to create encrypted partitions in Debian?
+-Apt vs aptget?
+	apt-get more to the lower level, both almost do the same fuctionality
 -Apptitude Vs Apt
 -SSH 
 -Port
 -SSH configuration port and not to run as root
--ufw  firewall
+-ufw  firewall?
+	Fire wall is the network security device teh at monitors and filters incoming and outgoing network traffic based on organisations based security policy, firewall is the barrier living bettween internal network and public networks, Firewall main purpose to allow non threatning traffic and keep threatning traffic away
 -How to configure ufw
 -How to modify hostname?
 -How to configure password policy
@@ -98,37 +101,60 @@ root userpass:
 Note: check the testing commands at the end of the project file.
 ----------------------------------------------------------------
 The commandline_bank.enum():
-$ apt-get update -y
-$ apt-get upgrade -y
-$ apt install sudo
-$ su -
-$ usermod -aG sudo your_username
- getent group sudo
-sudo visudo
-your_username    ALL=(ALL) ALL
-$ apt-get install git -y
-	sudo apt-get install wget
-	 sudo apt-get install vim
-	 $ sudo apt-get install zsh
-$ zsh --version
-$ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+//advanced package tools managment that install remove upgrade manage thousands of packages on debian and other distro
+	$ apt-get update -y
+	$ apt-get upgrade -y
+//Super user giving commands as the root, similar to windows admin
+	$ apt install sudo
+	$ su -
+//Adding user to the sudo group usermod -aG groupname username
+	$ usermod -aG sudo your_username
+//Check if the user part of the sudo group?
+	$getent group sudo
+//opening the sudo config file	
+	$sudo visudo
+//adding username privilage to the sudo group in the sudo_config file	
+	$your_username    ALL=(ALL) ALL
+//Installing git version control	
+	$ apt-get install git -y
+//wget is free opentool to download files from the web, using those protocols( HTTP, HTTPS, FTP and FTPS,)	
+	$sudo apt-get install wget
+//isntalling vim
+	$sudo apt-get install vim
+installing the zsh because it's more handy in dealing with the terminal (not part of the project)
+	  $ sudo apt-get install zsh
+	$ zsh --version
+	//do this later
+	 $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 	$ sudo apt-get update
-$ sudo apt install openssh-server
-	sudo systemctl status ssh
-	 service ssh restart
-	 sudo nano /etc/ssh/sshd_config
+//secure shell use for file transfer and remote controlling other mashines for security purpose , openssh is cloned from the ssh project and it's opensource
+	  $ sudo apt install openssh-server
+//cehcking the status of ssh you have one of 2 commands
+	 $sudo service ssh status	  $sudo systemctl status ssh
+//do what it said
+	 $service ssh restart
+//opening the ssh configuration file to edit the configs like: ports ..ect
+	 $sudo nano /etc/ssh/sshd_config
 	 #Port 22
 	 Port 4242
-	 sudo grep Port /etc/ssh/sshd_config
-	 sudo service ssh restart
-	 apt-get install ufw
-	 sudo ufw enable
-	 sudo ufw status numbered
-	 sudo ufw allow ssh
-	 sudo ufw allow 4242
-	 sudo ufw status numbered
-$ sudo ufw delete (that number, for example 5 or 6)
-	modify the port from the vm
+//checking the port 4242 via grep command
+	 $sudo grep Port /etc/ssh/sshd_config
+	 $sudo service ssh restart
+//installing the firewall
+	 $apt-get install ufw
+//enable the firewall on the system startup
+	 $sudo ufw enable
+//list the ufw rules, then you can delete or deal with the role depending on it's number
+	 $sudo ufw status numbered
+//firewall allowing the ssh 
+	 $sudo ufw allow ssh
+//allowing the port of 4242
+	 $sudo ufw allow 4242
+//checking the ufw added rules
+	 $sudo ufw status numbered
+//delete sprecific rule
+	$sudo ufw delete (that number, for example 5 or 6)
+//modify the port from the virtual machine
 	sudo systemctl restart ssh
 	$ sudo service sshd status
 	----from the host machine
@@ -137,8 +163,12 @@ $ sudo ufw delete (that number, for example 5 or 6)
 	------------------
 	Password policy:
 	--------------
+//This is a library to specify debian password configuration
+//ref : https://ostechnix.com/how-to-set-password-policies-in-linux/	
 	$ sudo apt-get install libpam-pwquality
-	 sudo nano /etc/pam.d/common-password
+//openining the password configuration file on the system
+	 $sudo nano /etc/pam.d/common-password
+//modifying what is inside the file
 	 password [success=2 default=ignore] pam_unix.so obscure sha512
 	 password [success=2 default=ignore] pam_unix.so obscure sha512 minlen=10
 	 password    requisite         pam_pwquality.so retry=3
