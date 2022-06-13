@@ -208,7 +208,7 @@ $ sudo nano /etc/hosts
  $ sudo crontab -u root -e
  */10 * * * * /usr/local/bin/monitoring.sh
 
-  monitoring.sh script draft
+monitoring.sh script draft, other people draft that I idn't 
   #!/bin/bash
 wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \
 $'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \
@@ -222,3 +222,15 @@ $'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
 $'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
 $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
 $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+----------------------------------------------------------------------
+my bash script
+#!/bin/bash
+
+echo "#Architecture: $(uname -a)"
+echo "#Physical proccessor: $(lscpu | grep "CPU(s)" | head -1 | awk '{print $2}')"
+echo "#Vcpu: $(cat /proc/cpuinfo | grep "processor" | wc -l)" #Double check this one with your peers
+
+#$4 is the free space, $3 utilized space, $2 total space
+free | head --line=2 | tail --line=1 | awk '{print "#Memory usage:  " $4 "/" $2 "MB ("  $3/$2 * 100 "%)"}'
+df -h | head -4 | tail -1 | awk '{print "#Disk usage: "$3"/" $2 " (" $4 ")"}'
+
