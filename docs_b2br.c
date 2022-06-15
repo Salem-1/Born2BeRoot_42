@@ -21,48 +21,80 @@ in this project I will setup a server in virutal box with tight specification,
 
 Terminology(Mind map):
 --------------------
+-Virtulaization:
+	using the resources of the os virtualized for another os on top of the main os
 -turn in signature.txt at the root repo., paste in it the signature fo your VMachine
--Server
--Debian Vs CentOS
--KDump
--SELinux
+-Server:
+	Computer that provide service to other computers.
+-Debian Vs CentOS:
+	Both are Linux destro, for CentOS more to enterprise, more stable release new version every 5 years, not easy to update, 
+	for Debian release every 2 years more easy to update both used as server, debian more easier to use.
+-KDump:
+	Export Memory Image if the Kernel crashed, to be used for debugging
+-SELinux:
+	Security enhanced linux,, that control who can access the system, more complex technology
+	Developed by NSA and released as opensource in 2000
 -AppArmor
+	Security application that protect against external and internal threats, Debain has it by default, less complex
+	more easy to learn that SElinux
 -How to create encrypted partitions in Debian?
+		all data on this partition will be erased, then you can encrypt it after that
 -Apt vs aptget?
-	apt-get more to the lower level, both almost do the same fuctionality
--Apptitude Vs Apt
--SSH 
+	apt-get more to the lower level(For system users ), both almost do the same fuctionality, apt more user friendly
+	REF:https://linuxconfig.org/apt-vs-apt-get-advanced-package-tool
+-Apptitude Vs Apt:
+	Aptitude for package management more higher level and has better UI, apt more to lower level and uses command line only
+	Aptitude can ease the package searching as well,
+	Ref:https://www.fosslinux.com/43884/apt-vs-aptitude.htm#:~:text=The%20first%20difference%20you%20will,by%20both%20of%20the%20tools.
+-SSH:
+	Secured shell, make it secure to remotly access another computer, connect securly 2 computers connected to unsecured network through
+	encryption, secure file transfer and data transfer ....ect.
 -Port
--SSH configuration port and not to run as root
+	Virtual place within OS where the connection start and end, On software level identify Logical operation that specifiy specific process
+	or type of network service
+-SSH configuration port and not to run as root:
+	this is from the configuration of the ufw
 -ufw  firewall?
-	Fire wall is the network security device teh at monitors and filters incoming and outgoing network traffic based on organisations based security policy, firewall is the barrier living bettween internal network and public networks, Firewall main purpose to allow non threatning traffic and keep threatning traffic away
--How to configure ufw
+	Uncomplicated Fire wall is the network security device teh at monitors and filters incoming and outgoing network traffic based 
+	on organisations based security policy, firewall is the barrier living bettween internal network and public networks,
+	Firewall main purpose to allow non threatning traffic and keep threatning traffic away,
+	Ref: https://www.checkpoint.com/cyber-hub/network-security/what-is-firewall/#:~:text=A%20Firewall%20is%20a%20network,network%20and%20the%20public%20Internet.
+
+-How to configure ufw?
+	in the comands below
 -How to modify hostname?
--How to configure password policy
+	in commands below
+-How to configure password policy?
+	using passwd quality library to change password specifications
 -sudo
+	allow you execute commands as root, super user
 -how to configure sudo
+	visudors file 
 -groups
+	number of users has same privilage
 -how to create groups, add users, delete users, chmod groups?
+	see commands below.
 -How to create new user and assign him to a group?
+	see code below.
 -TTY mode
-Questions to prepare answer for?
-What is the difference bettween aptitude and apt?
-What is SELinux?
-What is AppArmor?
+	teletype writer, print the name of the terminal, 
+	for example if you have more than virtual terminal, users use same veirtual terminal, then you can type
+	$tty to know which virtual terminal you are in
+
 SSH will be tested during defence by setting up new account?
 
 ----------------------------------------------------------------------------------
 Specifications:
-1-AppArmor must be running at startup
+(check)1-AppArmor must be running at startup
 (check) 2-Create at least 2 encrypted partitions
-3-SSH run on port 4242 only 
-4-Must not be able to connect SSH as root
+(check)3-SSH run on port 4242 only 
+(check)4-Must not be able to connect SSH as root
 5-Setting up new account during defense
-6-Firewall has only port 4242 open
-7-Firewall must be activated when launching the VM
-8-Host name ahsalem42, another user ahsalem ----->  belong to user42 group
+(check)6-Firewall has only port 4242 open
+(check)7-Firewall must be activated when launching the VM
+(check)8-Host name ahsalem42, another user ahsalem ----->  belong to user42 group
 9-Modify hostname during evaluation
-10-Implement strong password policy:
+(check)10-Implement strong password policy:
 expiry every: 30 days
 minimum days allowed before modifications: 2 days
 user recieve warning message before passwd expiry: 7 days
@@ -77,7 +109,7 @@ root userpass:
 	not part of former passwd (unique) 
 	root passwd has to compliy with this policy ???????
 11-After setting up and configure sudo group, change all password on the machine including rootuser pass..
-12-sudo group specs:
+(check)12-sudo group specs:
 	incorrect passwd attempt = 3 
 	wrong passwd message need to be displayed "this is wrong password"
 	archive all sudo actions in /var/log/sudo/  all inputs and outputs 
@@ -87,13 +119,13 @@ root userpass:
 	Displayed at startup
 	Displayed evey 10 minutes 
 	contains following:
-		1-archticture  of my OS and Kernel version
-		2-Number of physical processprs
-		3-Number of virtual processors
+		1-archticture  of my OS and Kernel version uname
+		2-Number of physical processpor  lscpu
+		3-Number of virtual processors    lscpu
 		4-Available RAM on my server , and utilization percentage rate
 		5-Date and time of last reboot
 		6-LVM active or not
-		7-Number of active connections
+		7-Number of active connections 
 		8-Number of users using the server
 		9-IPv4 address of my server and MAC address
 		10-Number of commands executed with sudo program
@@ -127,6 +159,8 @@ installing the zsh because it's more handy in dealing with the terminal (not par
 	//do this later
 	 $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 	$ sudo apt-get update
+	
+---------------------------------->>>>>>>>>>>>>>>continue studying this part in the campus inshalla 15th June 2022<<<<<<<<<<<<<<<<----------------
 //secure shell use for file transfer and remote controlling other mashines for security purpose , openssh is cloned from the ssh project and it's opensource
 	  $ sudo apt install openssh-server
 //cehcking the status of ssh you have one of 2 commands
@@ -198,7 +232,9 @@ Defaults	log_input,log_output
 Defaults        requiretty
 Defaults   secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 "
+//to know the name of the host
 $ hostnamectl
+//assigning new host name
 $ hostnamectl set-hostname new_hostname
 $ sudo nano /etc/hosts
 127.0.0.1       localhost
@@ -224,13 +260,35 @@ $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")"
 $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
 ----------------------------------------------------------------------
 my bash script
+//It took me 4 days to write this scrip, because II needed to understand many new concept before execting each tasks
+//next step to calibrate it vs the script above using diff,
+//15th June 2022 (from home)
 #!/bin/bash
 
 echo "#Architecture: $(uname -a)"
 echo "#Physical proccessor: $(lscpu | grep "CPU(s)" | head -1 | awk '{print $2}')"
-echo "#Vcpu: $(cat /proc/cpuinfo | grep "processor" | wc -l)" #Double check this one with your peers
+echo "#Vcpu: $(cat /proc/cpuinfo | grep "processor" | wc -l)" 
 
 #$4 is the free space, $3 utilized space, $2 total space
 free | head --line=2 | tail --line=1 | awk '{print "#Memory usage:  " $4 "/" $2 "MB ("  $3/$2 * 100 "%)"}'
+
 df -h | head -4 | tail -1 | awk '{print "#Disk usage: "$3"/" $2 " (" $4 ")"}'
+lsblk |grep lvm | wc -l | awk '{if ($1 < 1 ) {print "#LVM use: no";exit;} else {print "#LVM use: yes"}}'
+netstat -an | grep "ESTABLISHED" |grep "tcp" | wc -l  | awk '{print "#Connections TCP: " $1 " ESTABLISHED"}'
+w |head -1 | awk '{print "#User log: " $4 }'
+echo "#Network: IP $(ip route list | grep "default" | cut -d " " -f 3) ($(ifconfig -a | grep "ether" | head -1 | cut -d " " -f 10))"
+cat /var/log/sudo/sudo.log | wc -l | awk'{print "#Sudo: " $1 "cmd"}'
+----------------------------------
+	
+$Who
+list info about all the logged in users
+
+//left tasks 
+1-Close root acces from remote machine
+2-Test your script vs others
+3-Direct the err to /dev/null
+4-revise and test all specifications all over again
+
+
+
 
