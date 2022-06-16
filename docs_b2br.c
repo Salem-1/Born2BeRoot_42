@@ -291,4 +291,10 @@ list info about all the logged in users
 
 
 
-
+n = n * 100000 /100000; 
+-----------
+passwds:
+root=Asdfjkl;1
+ahsalem=Born2BeRoot
+encryption="asdfjkl; asdfjkl; "
+test_user=Test_user1
