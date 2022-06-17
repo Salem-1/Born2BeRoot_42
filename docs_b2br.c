@@ -1,6 +1,7 @@
 #Bism Ellah Elra7man Elra7eem 
 
-I tried to summrize the concepts needed to understand Born2BeRoot project
+I tried to summrize the concepts needed to understand Born2BeRoot project, as it require more time studying than thinking,
+However I do have disclaimer before following what it's written below
 My Dear friends, Kindly note that the commands at the end of this file are not perfect, if you want to follow more accurate implementation of the project 
 please use link like this one: https://baigal.medium.com/born2beroot-e6e26dfb50ac, 
 However I do encourge you to do your research and refer to this repo if you got stuck.
