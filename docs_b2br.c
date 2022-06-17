@@ -208,10 +208,10 @@ installing the zsh because it's more handy in dealing with the terminal (not par
 	 password    requisite         pam_pwquality.so retry=3
 	 password    requisite         pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=0 difok=7 enforce_for_root
 	 $ sudo nano /etc/login.defs
-	 PASS_MAX_DAYS 9999
+PASS_MAX_DAYS 9999
 PASS_MIN_DAYS 0
 PASS_WARN_AGE 7
-
+//change it to be 
 PASS_MAX_DAYS 30
 PASS_MIN_DAYS 2
 PASS_WARN_AGE 7
@@ -227,7 +227,7 @@ $ sudo nano /etc/sudoers
 Defaults     secure_path="..."
 Defaults     passwd_tries=3
 Defaults     badpass_message="Password is wrong, please try again!"
-Defaults	logfile="/var/log/sudo/sudo.log"
+Defaults	logfile="/var/log/sudo.log"
 Defaults	log_input,log_output
 Defaults        requiretty
 Defaults   secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
@@ -298,3 +298,7 @@ root=Asdfjkl;1
 ahsalem=Born2BeRoot
 encryption="asdfjkl; asdfjkl; "
 test_user=Test_user1
+
+----------------------------------------
+yesterday 16th June, I finished the project, then took snapshot before submission, I tried to delete the old snapshots, but I deleted the whole project by mistake, here I am redoing it all over again, let's see the work that took me 8 days to finish how much time will it take me now to do it again.
+17th June 6:00 am 
