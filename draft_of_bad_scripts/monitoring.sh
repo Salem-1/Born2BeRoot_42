@@ -1,10 +1,10 @@
 #!/bin/bash
-#but everyting in a variable then use wall
+
 echo "#Architecture: $(uname -a)" 2> /dev/null
 
-"#Physical proccessor: $(lscpu | grep "CPU(s)" | head -1 | awk '{print $2}')" 2> /dev/null
+echo "#Physical proccessor: $(lscpu | grep "CPU(s)" | head -1 | awk '{print $2}')" 2> /dev/null
 
-"#Vcpu: $(cat /proc/cpuinfo | grep "processor" | wc -l)" 2> /dev/null
+echo "#Vcpu: $(cat /proc/cpuinfo | grep "processor" | wc -l)" 2> /dev/null
 
 
 #$4 is the free space, $3 utilized space, $2 total spac
@@ -24,7 +24,7 @@ lsblk |grep lvm | wc -l | awk '{if ($1 < 1 ) {print "#LVM use: no";exit;} else {
 
 netstat -an | grep "ESTABLISHED" |grep "tcp" | wc -l  | awk '{print "#Connections TCP: " $1 " ESTABLISHED"}' 2> /dev/null
 
-w  |head -1 | awk '{print "#User log: " $5 }' 2> /dev/null
+w |head -1 | awk '{print "#User log: " $5 }' 2> /dev/null
 echo "#Network: IP $(ip route list | tail -1| cut -d " " -f 9) ($(ip -h address | grep "ether" | cut -d " " -f 6))" 2> /dev/null
 
 journalctl -q _COMM=sudo |grep "COMMAND" |wc -l | awk '{print "#Sudo: " $1 " cmd"}' 2> /dev/null
