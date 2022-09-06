@@ -1,5 +1,7 @@
 #Bism Ellah Elra7man Elra7eem 
 
+This is the documentation of the journey of making virtual machine to fulfill the specification of Born To Be Root project.
+
 I tried to summrize the concepts needed to understand Born2BeRoot project, as it require more time studying than thinking,
 However I do have disclaimer before following what it's written below
 My Dear friends, Kindly note that the commands at the end of this file are not perfect, if you want to follow more accurate implementation of the project 
@@ -7,7 +9,6 @@ please use link like this one: https://baigal.medium.com/born2beroot-e6e26dfb50a
 However I do encourge you to do your research and refer to this repo if you got stuck.
 7th June 2022
 
-This is documentation of my journey with born to be root project:
 in this project I will setup a server in virutal box with tight specification, 
    Let the fun begin....
 
