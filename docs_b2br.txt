@@ -1,6 +1,6 @@
 #Bism Ellah Elra7man Elra7eem 
 
-This is the documentation of the journey of making virtual machine to fulfill the specification of Born To Be Root project.
+This is the documentation of the journey of making virtual machine that fulfills the specification of Born To Be Root project.
 
 I tried to summrize the concepts needed to understand Born2BeRoot project, as it require more time studying than thinking,
 However I do have disclaimer before following what it's written below
